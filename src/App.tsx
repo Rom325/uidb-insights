@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Logo from "./Logo";
 import "./App.css";
 
@@ -20,6 +21,9 @@ function App() {
         <div className="tob-bar__right">
           <span className="top-bar__text">Author/Developer Name</span>
         </div>
+      </div>
+      <div className="content">
+        <Outlet />
       </div>
     </main>
   );

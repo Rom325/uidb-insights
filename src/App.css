@@ -19,6 +19,7 @@
   width: 1440px;
   max-width: 100%;
   display: flex;
+  flex-flow: column nowrap;
   justify-content: space-around;
   margin: auto;
 }
