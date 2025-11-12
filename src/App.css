@@ -24,7 +24,19 @@
   margin: auto;
 }
 
+.content {
+  width: 100%;
+  padding: 0;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.layout .top-bar {
+  margin-bottom: 32px;
+}
+
 .top-bar {
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
