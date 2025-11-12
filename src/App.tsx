@@ -19,7 +19,7 @@ function App() {
           <span className="top-bar__text">Devices</span>
         </div>
         <div className="tob-bar__right">
-          <span className="top-bar__text">Author/Developer Name</span>
+          <span className="top-bar__text">Author: Roman K</span>
         </div>
       </div>
       <div className="content">
