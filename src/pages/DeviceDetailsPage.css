@@ -1,0 +1,138 @@
+.device-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.device-details__back-link {
+  font-size: 14px;
+  color: #006fff;
+  text-decoration: none;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.device-details__panel {
+  display: flex;
+  gap: 32px;
+  padding: 32px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08),
+    0 12px 32px rgba(15, 23, 42, 0.06);
+}
+
+.device-details__media {
+  flex: 0 0 280px;
+  background: #f9fafa;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.device-details__media-placeholder {
+  width: 160px;
+  height: 160px;
+  border-radius: 32px;
+  border: 1px dashed #cfd6e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  color: #7b8495;
+}
+
+.device-details__image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.device-details__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.device-details__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.device-details__line {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.device-details__specs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.device-details__spec-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.device-details__spec-row dt {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.device-details__spec-row dd {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+  text-align: right;
+  min-width: 120px;
+}
+
+.device-details__empty {
+  border-radius: 12px;
+  padding: 24px;
+  background: #fff6f5;
+  border: 1px solid #ffd5d1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.device-details__cta {
+  width: fit-content;
+  text-decoration: none;
+  background: #006fff;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .device-details__panel {
+    flex-direction: column;
+  }
+
+  .device-details__media {
+    width: 100%;
+  }
+
+  .device-details__spec-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .device-details__spec-row dd {
+    text-align: left;
+    min-width: auto;
+  }
+}

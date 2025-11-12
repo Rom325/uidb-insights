@@ -55,7 +55,7 @@
 }
 
 .device-table__line-cell {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 12px;
 }
@@ -78,6 +78,22 @@
   font-weight: 600;
   color: #7b8495;
   text-transform: uppercase;
+}
+
+.device-table__link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.device-table__link:focus-visible {
+  outline: 2px solid #006fff;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.device-table__link:hover span:last-child {
+  color: #006fff;
 }
 
 .device-table tr:last-child td {
