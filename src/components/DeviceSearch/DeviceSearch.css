@@ -1,0 +1,75 @@
+.device-search__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: min(360px, 100%);
+}
+
+.device-search__icon {
+  position: absolute;
+  left: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.device-search__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  padding: 0 12px 0 36px;
+  background: #f6f6f8;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.device-search__input:focus-visible {
+  outline: 2px solid #006fff;
+  outline-offset: 2px;
+  background: #fff;
+}
+
+.device-search__popup {
+  width: min(360px, calc(100vw - 48px));
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 15px 40px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  padding: 4px 0;
+}
+
+.device-search__list {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.device-search__item {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.device-search__item[data-highlighted],
+.device-search__item:hover {
+  background: #f1f5f9;
+}
+
+.device-search__item-label {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.device-search__item-line {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.device-search__empty {
+  padding: 8px 16px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.45);
+}

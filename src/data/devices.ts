@@ -15,6 +15,7 @@ export type DeviceRecord = {
 const FALLBACK_LINE_NAME = "Unknown line";
 const FALLBACK_PRODUCT_NAME = "Unnamed device";
 const FALLBACK_IDENTIFIER = "Unknown identifier";
+const UNKNOWN_LINE_ID = "unknown-line";
 
 export const DEFAULT_THUMBNAIL_SIZE = 25;
 export const HERO_IMAGE_SIZE = 256;
@@ -41,6 +42,10 @@ export function getLineName(device?: DeviceRecord) {
   }
 
   return device.line?.name?.trim() || FALLBACK_LINE_NAME;
+}
+
+export function getLineId(device?: DeviceRecord) {
+  return device?.line?.id ?? UNKNOWN_LINE_ID;
 }
 
 export function getProductName(device?: DeviceRecord) {
@@ -90,4 +95,24 @@ export function getDevicePlaceholder(device?: DeviceRecord) {
     "U";
 
   return source.charAt(0).toUpperCase();
+}
+
+export function getDeviceSearchText(device?: DeviceRecord) {
+  if (!device) {
+    return "";
+  }
+
+  const textParts = [
+    getProductName(device),
+    getLineName(device),
+    device.shortnames?.join(" "),
+    device.deviceType,
+    device.sku,
+    device.id,
+  ];
+
+  return textParts
+    .filter((part): part is string => Boolean(part && part.trim()))
+    .join(" ")
+    .toLowerCase();
 }
