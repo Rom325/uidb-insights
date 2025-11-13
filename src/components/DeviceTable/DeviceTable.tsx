@@ -34,7 +34,11 @@ function DeviceTable({
               {devices.map((device, index) => {
                 const productName = getProductName(device);
                 const lineName = getLineName(device);
-                const thumbnail = renderThumbnail(device, productName, thumbnailSize);
+                const thumbnail = renderThumbnail(
+                  device,
+                  productName,
+                  thumbnailSize
+                );
                 const key = getRowKey(device, index);
                 const detailPath = device.id ? `/devices/${device.id}` : null;
 

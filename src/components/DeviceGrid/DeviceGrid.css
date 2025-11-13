@@ -1,3 +1,14 @@
+.device-grid__scroll-area {
+  --scrollbar-size: 10px;
+  background: #fff;
+  max-height: 70vh;
+  box-sizing: border-box;
+}
+
+.device-grid__viewport {
+  max-height: calc(70vh - 16px);
+}
+
 .device-grid {
   --card-gap: 16px;
   display: grid;
