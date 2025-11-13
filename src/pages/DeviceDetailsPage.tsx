@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { Collapsible } from "@base-ui-components/react/collapsible";
 import {
   HERO_IMAGE_SIZE,
   findDeviceById,
@@ -38,6 +39,7 @@ function DeviceDetailsPage() {
   const shortName = getShortName(device) ?? NOT_AVAILABLE;
   const heroImage = getThumbnailUrl(device, HERO_IMAGE_SIZE) ?? null;
   const placeholderInitial = getDevicePlaceholder(device);
+  const rawJson = JSON.stringify(device, null, 2);
 
   const specs: Array<{ label: string; value: string }> = [
     { label: "Product Line", value: lineName },
@@ -86,6 +88,14 @@ function DeviceDetailsPage() {
           </dl>
         </div>
       </div>
+      <Collapsible.Root className="device-details__raw">
+        <Collapsible.Trigger className="device-details__raw-trigger">
+          See All Details as JSON
+        </Collapsible.Trigger>
+        <Collapsible.Panel className="device-details__raw-panel">
+          <pre className="device-details__raw-code">{rawJson}</pre>
+        </Collapsible.Panel>
+      </Collapsible.Root>
     </section>
   );
 }
