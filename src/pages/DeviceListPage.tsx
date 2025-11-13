@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import DeviceSearch from "../components/DeviceSearch/DeviceSearch";
 import type { DeviceSearchItem } from "../components/DeviceSearch/DeviceSearch";
 import LineFilter from "../components/LineFilter/LineFilter";
@@ -15,12 +16,25 @@ import {
 import "./DeviceListPage.css";
 
 const MAX_SUGGESTIONS = 8;
+const VIEW_PARAM = "view";
+
+function getViewModeFromParam(value: string | null): "list" | "grid" {
+  return value === "grid" ? "grid" : "list";
+}
 
 function DeviceListPage() {
   const devices = getDevices();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState("");
   const [selectedLines, setSelectedLines] = useState<string[]>([]);
-  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+  const [viewMode, setViewMode] = useState<"list" | "grid">(() =>
+    getViewModeFromParam(searchParams.get(VIEW_PARAM))
+  );
+
+  useEffect(() => {
+    const nextMode = getViewModeFromParam(searchParams.get(VIEW_PARAM));
+    setViewMode((current) => (current === nextMode ? current : nextMode));
+  }, [searchParams]);
 
   const normalizedSearch = searchValue.trim().toLowerCase();
 
@@ -94,6 +108,23 @@ function DeviceListPage() {
     setSelectedLines([]);
   };
 
+  const handleViewModeChange = (mode: "list" | "grid") => {
+    if (mode === viewMode) {
+      return;
+    }
+
+    setViewMode(mode);
+    setSearchParams((current) => {
+      const nextParams = new URLSearchParams(current);
+      if (mode === "list") {
+        nextParams.delete(VIEW_PARAM);
+      } else {
+        nextParams.set(VIEW_PARAM, "grid");
+      }
+      return nextParams;
+    });
+  };
+
   return (
     <section aria-label="Browse available devices" className="device-list">
       <div className="device-toolbar">
@@ -115,7 +146,7 @@ function DeviceListPage() {
               type="button"
               className="device-toolbar__icon-button"
               aria-pressed={viewMode === "list"}
-              onClick={() => setViewMode("list")}
+              onClick={() => handleViewModeChange("list")}
             >
               <ListViewIcon />
               <span className="sr-only">List view</span>
@@ -124,7 +155,7 @@ function DeviceListPage() {
               type="button"
               className="device-toolbar__icon-button"
               aria-pressed={viewMode === "grid"}
-              onClick={() => setViewMode("grid")}
+              onClick={() => handleViewModeChange("grid")}
             >
               <GridViewIcon />
               <span className="sr-only">Grid view</span>
@@ -165,6 +196,7 @@ function ListViewIcon() {
       height="20"
       viewBox="0 0 20 20"
       fill="currentColor"
+      aria-hidden
     >
       <mask id="path-1-inside-1_2_789" fill="white">
         <path
@@ -189,6 +221,7 @@ function GridViewIcon() {
       height="20"
       viewBox="0 0 20 20"
       fill="currentColor"
+      aria-hidden
     >
       <path
         fillRule="evenodd"
