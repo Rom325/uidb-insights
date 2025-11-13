@@ -7,25 +7,28 @@
 
 .device-search__icon {
   position: absolute;
-  left: 12px;
-  color: rgba(0, 0, 0, 0.45);
+  left: 11px;
 }
 
 .device-search__input {
   box-sizing: border-box;
   width: 100%;
-  height: 40px;
-  border-radius: 8px;
+  height: 32px;
+  border-radius: 4px;
   border: none;
-  padding: 0 12px 0 36px;
+  padding: 0 12px 0 30px;
   background: #f6f6f8;
   font-size: 14px;
+  font-weight: 400;
   color: rgba(0, 0, 0, 0.85);
+}
+
+.device-search__input ::placeholder {
+  color: var(--Neutral-8, #838691);
 }
 
 .device-search__input:focus-visible {
   outline: 2px solid #006fff;
-  outline-offset: 2px;
   background: #fff;
 }
 
@@ -34,8 +37,7 @@
   background: #fff;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
-  box-shadow:
-    0 15px 40px rgba(15, 23, 42, 0.12),
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12),
     0 0 0 1px rgba(15, 23, 42, 0.04);
   padding: 4px 0;
 }

@@ -30,9 +30,7 @@ function LineFilter({
         data-active={hasActiveFilters ? "true" : undefined}
       >
         <FilterIcon />
-        <span>
-          Filter{hasActiveFilters ? ` (${selectedIds.length})` : ""}
-        </span>
+        <span>Filter{hasActiveFilters ? ` (${selectedIds.length})` : ""}</span>
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Positioner sideOffset={8}>
@@ -44,14 +42,6 @@ function LineFilter({
                   Select one or multiple lines to narrow the list.
                 </p>
               </div>
-              <button
-                type="button"
-                className="device-filter__clear"
-                onClick={onClear}
-                disabled={!hasActiveFilters}
-              >
-                Clear
-              </button>
             </div>
             <div className="device-filter__options">
               {options.map((line) => (
@@ -68,6 +58,14 @@ function LineFilter({
                 </label>
               ))}
             </div>
+            <button
+              type="button"
+              className="device-filter__clear"
+              onClick={onClear}
+              disabled={!hasActiveFilters}
+            >
+              Reset
+            </button>
           </Popover.Popup>
         </Popover.Positioner>
       </Popover.Portal>

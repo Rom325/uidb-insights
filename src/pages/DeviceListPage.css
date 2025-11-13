@@ -4,24 +4,13 @@
   gap: 24px;
 }
 
-.device-list__intro {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.device-list__subtitle {
-  margin-top: 4px;
-  color: #5d6470;
-  font-size: 14px;
-}
-
 .device-toolbar {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   align-items: center;
   justify-content: space-between;
+  padding: 16px 0;
 }
 
 .device-toolbar__left {

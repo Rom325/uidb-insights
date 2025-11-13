@@ -61,7 +61,6 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: saturate(0.9);
 }
 
 .device-grid__image--placeholder {
