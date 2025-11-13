@@ -1,4 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState,
+  startTransition,
+  useDeferredValue,
+} from "react";
 import { useSearchParams } from "react-router-dom";
 import DeviceSearch from "../components/DeviceSearch/DeviceSearch";
 import type { DeviceSearchItem } from "../components/DeviceSearch/DeviceSearch";
@@ -37,6 +43,7 @@ function DeviceListPage() {
   }, [searchParams]);
 
   const normalizedSearch = searchValue.trim().toLowerCase();
+  const deferredSearch = useDeferredValue(normalizedSearch);
 
   const searchItems = useMemo<DeviceSearchItem[]>(
     () =>
@@ -80,16 +87,18 @@ function DeviceListPage() {
     return source.slice(0, MAX_SUGGESTIONS);
   }, [searchItems, normalizedSearch]);
 
+  const deferredSelectedLines = useDeferredValue(selectedLines);
   const filteredDevices = useMemo(() => {
     return devices.filter((device) => {
-      const matchesSearch = normalizedSearch
-        ? getDeviceSearchText(device).includes(normalizedSearch)
+      const matchesSearch = deferredSearch
+        ? getDeviceSearchText(device).includes(deferredSearch)
         : true;
       const matchesLine =
-        selectedLines.length === 0 || selectedLines.includes(getLineId(device));
+        deferredSelectedLines.length === 0 ||
+        deferredSelectedLines.includes(getLineId(device));
       return matchesSearch && matchesLine;
     });
-  }, [devices, normalizedSearch, selectedLines]);
+  }, [devices, deferredSearch, deferredSelectedLines]);
 
   const filteredCountLabel = `${filteredDevices.length} Device${
     filteredDevices.length === 1 ? "" : "s"
@@ -113,15 +122,17 @@ function DeviceListPage() {
       return;
     }
 
-    setViewMode(mode);
-    setSearchParams((current) => {
-      const nextParams = new URLSearchParams(current);
-      if (mode === "list") {
-        nextParams.delete(VIEW_PARAM);
-      } else {
-        nextParams.set(VIEW_PARAM, "grid");
-      }
-      return nextParams;
+    startTransition(() => {
+      setViewMode(mode);
+      setSearchParams((current) => {
+        const nextParams = new URLSearchParams(current);
+        if (mode === "list") {
+          nextParams.delete(VIEW_PARAM);
+        } else {
+          nextParams.set(VIEW_PARAM, "grid");
+        }
+        return nextParams;
+      });
     });
   };
 
