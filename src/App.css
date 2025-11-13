@@ -26,7 +26,7 @@
 
 .content {
   width: 100%;
-  padding: 0;
+  padding: 0 32px;
   background: #fff;
   box-sizing: border-box;
 }
@@ -53,7 +53,6 @@
 }
 .top-bar__text {
   color: var(--Text-web-unifi-text-3, #808893);
-  /* Web/Body-primary */
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

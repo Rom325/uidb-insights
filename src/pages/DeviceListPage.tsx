@@ -3,6 +3,7 @@ import DeviceSearch from "../components/DeviceSearch/DeviceSearch";
 import type { DeviceSearchItem } from "../components/DeviceSearch/DeviceSearch";
 import LineFilter from "../components/LineFilter/LineFilter";
 import type { LineFilterOption } from "../components/LineFilter/LineFilter";
+import DeviceGrid from "../components/DeviceGrid/DeviceGrid";
 import DeviceTable from "../components/DeviceTable/DeviceTable";
 import {
   getDeviceSearchText,
@@ -147,7 +148,11 @@ function DeviceListPage() {
         </div>
       </div>
       {hasResults ? (
-        <DeviceTable devices={filteredDevices} />
+        viewMode === "grid" ? (
+          <DeviceGrid devices={filteredDevices} />
+        ) : (
+          <DeviceTable devices={filteredDevices} />
+        )
       ) : (
         <p className="device-table__empty" role="status">
           {devices.length === 0
