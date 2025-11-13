@@ -21,6 +21,8 @@ function LineFilter({
   onClear,
 }: LineFilterProps) {
   const hasActiveFilters = selectedIds.length > 0;
+  const filterCount = selectedIds.length;
+  const filterLabel = `Filter (${filterCount})`;
 
   return (
     <Popover.Root>
@@ -28,9 +30,16 @@ function LineFilter({
         type="button"
         className="device-filter__trigger"
         data-active={hasActiveFilters ? "true" : undefined}
+        aria-label={filterLabel}
       >
-        <FilterIcon />
-        <span>Filter{hasActiveFilters ? ` (${selectedIds.length})` : ""}</span>
+        <span className="device-filter__trigger-text">Filter</span>
+        <span
+          className="device-filter__count-chip"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {filterCount}
+        </span>
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Positioner sideOffset={8}>
@@ -74,16 +83,3 @@ function LineFilter({
 }
 
 export default LineFilter;
-
-function FilterIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-      <path
-        d="M2 4h12M4 8h8M6 12h4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}

@@ -47,6 +47,15 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 4px;
+}
+
+.device-toolbar__icon-button:hover {
+  background: var(--Neutral-web-unifi-color-neutral-02, #f4f5f6);
+}
+
+.device-toolbar__icon-button:active {
+  background: var(--Neutral-web-unifi-color-neutral-01, #f9fafa);
 }
 
 .device-toolbar__icon-button[aria-pressed="true"] {

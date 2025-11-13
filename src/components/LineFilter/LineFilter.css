@@ -10,8 +10,44 @@
   cursor: pointer;
 }
 
+.device-filter__trigger:hover {
+  background: var(--Neutral-web-unifi-color-neutral-02, #f4f5f6);
+}
+
+.device-filter__trigger:active {
+  background: var(--Neutral-web-unifi-color-neutral-01, #f9fafa);
+  color: #006fff;
+}
+
 .device-filter__trigger[data-active="true"] {
   border-color: #006fff;
+  color: #006fff;
+}
+
+.device-filter__trigger-text {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.device-filter__count-chip {
+  min-width: 24px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.device-filter__trigger:hover .device-filter__count-chip {
+  background-color: lightgray;
+}
+
+.device-filter__trigger[data-active="true"] .device-filter__count-chip {
+  background: rgba(0, 111, 255, 0.12);
   color: #006fff;
 }
 

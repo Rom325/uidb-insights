@@ -57,7 +57,7 @@
 
 .device-search__item[data-highlighted],
 .device-search__item:hover {
-  background: #f1f5f9;
+  background: var(--Neutral-web-unifi-color-neutral-02, #f4f5f6);
 }
 
 .device-search__item-label {
