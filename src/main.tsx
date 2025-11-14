@@ -1,35 +1,44 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
 import DeviceListPage from "./pages/DeviceListPage.tsx";
 import DeviceDetailsPage from "./pages/DeviceDetailsPage.tsx";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          index: true,
+          element: <Navigate to="/devices" replace />,
+        },
+        {
+          path: "devices",
+          element: <DeviceListPage />,
+        },
+        {
+          path: "devices/:deviceId",
+          element: <DeviceDetailsPage />,
+        },
+        {
+          path: "*",
+          element: <Navigate to="/devices" replace />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <Navigate to="/devices" replace />,
-      },
-      {
-        path: "devices",
-        element: <DeviceListPage />,
-      },
-      {
-        path: "devices/:deviceId",
-        element: <DeviceDetailsPage />,
-      },
-      {
-        path: "*",
-        element: <Navigate to="/devices" replace />,
-      },
-    ],
-  },
-]);
+    basename: import.meta.env.BASE_URL, // resolves to "/uidb-insights/"
+  }
+);
 
 createRoot(document.getElementById("app-root")!).render(
   <StrictMode>
